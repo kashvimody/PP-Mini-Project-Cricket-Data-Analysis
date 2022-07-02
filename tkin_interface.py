@@ -10,20 +10,20 @@ root.geometry("400x400")
 
 # Drop down boxes
 
+# To show the selection
+def selected(event):
+    myLabel = Label(root, text = clicked.get()).pack()
+    for i in range(0, len(options)):
+        if clicked.get() == options[i]:
+            myLabel = Label(root, text = sname[i]).pack()
+            break
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+def comboclick(event):
+    myLabel = Label(root, text = myCombo.get()).pack()
+    for i in range(0, len(options)):
+        if myCombo.get() == options[i]:
+            myLabel = Label(root, text = sname[i]).pack()
+            break        
 
 options = [
     "MS",
