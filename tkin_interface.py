@@ -38,3 +38,22 @@ sname = [
     "Dhawan",
     "Sharma"
 ]
+
+clicked = StringVar()
+
+# Default value
+clicked.set("Select a Player")
+
+drop = OptionMenu(root, clicked, *options, command = selected)
+drop.pack()
+
+#Combo Box
+myCombo = ttk.Combobox(root, value = options)
+myCombo.current(0)
+myCombo.bind("<<ComboBoxSelected>>", comboclick)
+myCombo.pack()
+
+# Get the selection
+#myButton = Button(root, text = "Show Selection", command = show).pack()
+
+root.mainloop()
