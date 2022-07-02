@@ -29,3 +29,11 @@ df.drop(columns='odi_number', inplace=True)
 
 # dropping those innings where Dhoni did not bat and storing in a new DataFrame
 df_new = df.loc[((df['score'] != 'DNB') & (df['score'] != 'TDNB')), 'runs_scored':]
+
+# fixing the data types of numerical columns
+df_new['runs_scored'] = df_new['runs_scored'].astype(int)
+df_new['balls_faced'] = df_new['balls_faced'].astype(int)
+df_new['strike_rate'] = df_new['strike_rate'].astype(float)
+df_new['fours'] = df_new['fours'].astype(int)
+df_new['sixes'] = df_new['sixes'].astype(int)
+
