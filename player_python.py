@@ -66,3 +66,21 @@ fours = df_new['fours'].sum() # number of fours in career
 print('Number of 4s:', fours)
 sixes = df_new['sixes'].sum() # number of sixes in career
 print('Number of 6s:', sixes)
+
+
+# For graphical analysis
+# plt.plot for plotting
+# plt.xlabel and plt.ylabel for labelling the Axes
+# plt.label for labelling the graph
+# plt.show for displaying
+
+#Start of Analysis
+#1.  number of matches played against different oppositions
+df['opposition'].value_counts().plot(kind='bar', title='Number of matches against different oppositions', figsize=(8, 5));
+plt.show()
+
+#2. Runs scored against different oppositions
+runs_scored_by_opposition = pd.DataFrame(df_new.groupby('opposition')['runs_scored'].sum())
+runs_scored_by_opposition.plot(kind='bar', title='Runs scored against different oppositions', figsize=(8, 5))
+plt.xlabel(None);
+plt.show()
