@@ -110,3 +110,29 @@ plt.show()
 df['year'].value_counts().sort_index().plot(kind='bar', title='Matches played by year', figsize=(8, 5))
 plt.xticks(rotation=0);
 plt.show()
+
+#5. Runs scored every year   
+df_new.groupby('year')['runs_scored'].sum().plot(kind='line', marker='o', title='Runs scored by year', figsize=(8, 5))
+years = df['year'].unique().tolist()
+plt.xticks(years)
+plt.xlabel(None);
+plt.show()
+
+#6. Batting average progression
+df_new.reset_index(drop=True, inplace=True)
+career_average = pd.DataFrame()
+career_average['runs_scored_in_career'] = df_new['runs_scored'].cumsum()
+career_average['innings'] = df_new.index.tolist()
+career_average['innings'] = career_average['innings'].apply(lambda x: x+1)
+career_average['not_outs_in_career'] = df_new['not_out'].cumsum()
+career_average['eff_num_of_inns'] = career_average['innings'] - career_average['not_outs_in_career']
+career_average['average'] = career_average['runs_scored_in_career'] / career_average['eff_num_of_inns']
+
+#For plotting the curve
+plt.figure(figsize = (8, 5))
+plt.plot(career_average['average'])
+plt.plot([career_avg]*career_average.shape[0], '--')
+plt.title('Career average progression by innings')
+plt.xlabel('Number of innings')
+plt.legend(['Avg progression', 'Career average']);
+plt.show()
