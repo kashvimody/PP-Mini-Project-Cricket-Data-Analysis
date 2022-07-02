@@ -84,3 +84,29 @@ runs_scored_by_opposition = pd.DataFrame(df_new.groupby('opposition')['runs_scor
 runs_scored_by_opposition.plot(kind='bar', title='Runs scored against different oppositions', figsize=(8, 5))
 plt.xlabel(None);
 plt.show()
+
+#3. Batting average against each team
+innings_by_opposition = pd.DataFrame(df_new.groupby('opposition')['date'].count())
+not_outs_by_opposition = pd.DataFrame(df_new.groupby('opposition')['not_out'].sum())
+temp = runs_scored_by_opposition.merge(innings_by_opposition, left_index=True, right_index=True)
+average_by_opposition = temp.merge(not_outs_by_opposition, left_index=True, right_index=True)
+average_by_opposition.rename(columns = {'date': 'innings'}, inplace=True)
+average_by_opposition['eff_num_of_inns'] = average_by_opposition['innings'] - average_by_opposition['not_out']
+average_by_opposition['average'] = average_by_opposition['runs_scored'] / average_by_opposition['eff_num_of_inns']
+average_by_opposition.replace(np.inf, np.nan, inplace=True)
+major_nations = ['Australia', 'England', 'New Zealand', 'Pakistan', 'South Africa', 'Sri Lanka', 'West Indies']
+
+#Code for generating the plot
+plt.figure(figsize = (8, 5))
+plt.plot(average_by_opposition.loc[major_nations, 'average'].values, marker='o')
+plt.plot([career_avg]*len(major_nations), '--')
+plt.title('Average against major teams')
+plt.xticks(range(0, 7), major_nations)
+plt.ylim(20, 70)
+plt.legend(['Avg against opposition', 'Career average']);
+plt.show()
+
+#4. Matches played per year
+df['year'].value_counts().sort_index().plot(kind='bar', title='Matches played by year', figsize=(8, 5))
+plt.xticks(rotation=0);
+plt.show()
