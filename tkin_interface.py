@@ -9,3 +9,32 @@ root.iconbitmap(r"C:\Users\zaida\Downloads\Cover .PNG")
 root.geometry("400x400")
 
 # Drop down boxes
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+options = [
+    "MS",
+    "Virat",
+    "Shikhar",
+    "Rohit"
+]
+
+sname = [
+    "Dhoni",
+    "Kohli",
+    "Dhawan",
+    "Sharma"
+]
