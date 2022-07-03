@@ -42,7 +42,7 @@ def selected(event):
             # dropping the odi_number feature because it adds no value to the analysis
             df.drop(columns='odi_number', inplace=True)
 
-            # dropping those innings where Dhoni did not bat and storing in a new DataFrame
+            # dropping those innings where player did not bat and storing in a new DataFrame
             df_new = df.loc[((df['score'] != 'DNB') & (df['score'] != 'TDNB')), 'runs_scored':]
 
             # fixing the data types of numerical columns
@@ -217,3 +217,5 @@ drop = OptionMenu(root, clicked, *p_name, command = selected)
 drop.pack()
 
 root.mainloop() 
+
+# This is the final code which is a compilation of the two separate codes, tkinter interface and the player analysis code
