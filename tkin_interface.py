@@ -1,57 +1,31 @@
 from tkinter import *
-from PIL import ImageTk, Image
-from tkinter import ttk
-
+from PIL import Image, ImageTk
 
 root = Tk()
-root.geometry("400x400")
 
-# Drop down boxes
-
-# To show the selection
+# Function selected
 def selected(event):
-    myLabel = Label(root, text = clicked.get()).pack()
-    for i in range(0, len(options)):
-        if clicked.get() == options[i]:
-            myLabel = Label(root, text = sname[i]).pack()
+    for i in range(0, len(p_name)):
+        if clicked.get() == p_name[i]:
+            myLabel = Label(root, text = xlsname[i]).pack()
             break
 
-def comboclick(event):
-    myLabel = Label(root, text = myCombo.get()).pack()
-    for i in range(0, len(options)):
-        if myCombo.get() == options[i]:
-            myLabel = Label(root, text = sname[i]).pack()
-            break        
 
-options = [
-    "MS",
-    "Virat",
-    "Shikhar",
-    "Rohit"
-]
 
-sname = [
-    "Dhoni",
-    "Kohli",
-    "Dhawan",
-    "Sharma"
-]
+# Width X Height
+root.geometry("1920x1080")
 
-clicked = StringVar()
+# Displaying the Image
+photo = PhotoImage(file = "cricket-stats.png")
+label1 = Label(image = photo)
+label1.pack()
 
-# Default value
-clicked.set("Select a Player")
 
-drop = OptionMenu(root, clicked, *options, command = selected)
-drop.pack()
+#width, height
+root.minsize(300, 100)
+root.maxsize(1200, 988)
 
-#Combo Box
-myCombo = ttk.Combobox(root, value = options)
-myCombo.current(0)
-myCombo.bind("<<ComboBoxSelected>>", comboclick)
-myCombo.pack()
-
-# Get the selection
-#myButton = Button(root, text = "Show Selection", command = show).pack()
-
-root.mainloop()
+"""
+myLabel = Label(text = "This is a Label")
+myLabel.pack()
+"""
