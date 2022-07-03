@@ -60,3 +60,16 @@ xlsname = [
     "Sourav_Ganguly_ODI_record",
     "Ambati_Rayudu_ODI_record"    
 ]
+
+
+# Storing value of clicked Name
+clicked = StringVar()
+
+# Default placeholder for Dropdown Box
+clicked.set("Select a Player")
+
+# Dropdown Box
+drop = OptionMenu(root, clicked, *p_name, command = selected)
+drop.pack()
+
+root.mainloop() 
