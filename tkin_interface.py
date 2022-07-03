@@ -30,7 +30,6 @@ myLabel = Label(text = "This is a Label")
 myLabel.pack()
 """
 
-
 p_name = [
     "MS Dhoni",
     "Rohit Shama",
@@ -60,7 +59,6 @@ xlsname = [
     "Sourav_Ganguly_ODI_record",
     "Ambati_Rayudu_ODI_record"    
 ]
-
 
 # Storing value of clicked Name
 clicked = StringVar()
